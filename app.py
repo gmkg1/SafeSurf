@@ -44,8 +44,8 @@ MODEL_FILENAME = resource_path("hate_speech_model.pkl")
 FLASK_SERVER_URL = "http://127.0.0.1:5000"
 
 
-VIRUSTOTAL_API_KEY = "d5609cb07dfcbdca0dd21f85a4af94c48484673b1a1bf1f91622ca0de42ba7fd"
-GOOGLE_SAFE_BROWSING_API_KEY = "AIzaSyAXkrbweLFRKzzy4FygloL_12CkwG3qpdM"
+VIRUSTOTAL_API_KEY = "enter your api keys"
+GOOGLE_SAFE_BROWSING_API_KEY = "enter your api keys"
 
 try:
     stemmer = SnowballStemmer("english")
@@ -64,7 +64,7 @@ class AIInsightThread(QThread):
 
     def run(self):
         try:
-            api_key = "AIzaSyCvbkohnjBdlyf0A8W0oDa7a-YnFNsAIrk"
+            api_key = "enter your api keys"
             if not api_key:
                 self.insight_error.emit("<h2>API Key Not Found</h2><p>Please set the <b>GOOGLE_API_KEY</b> environment variable before running the application.</p>")
                 return
@@ -656,4 +656,5 @@ def main():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
+
     main()
