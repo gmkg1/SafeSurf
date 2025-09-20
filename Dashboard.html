@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeSurf Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: "Press Start 2P", monospace; background-color: white; color: #fff; } .sidebar { position: fixed; left: 0; top: 0; width: 260px; height: 100%; background: hsl(191, 100%, 50%); padding-top: 20px; font-size: 14px; } .sidebar img { display: block; margin: 0 auto 20px; width: 150px; height: auto; } .sidebar ul { list-style: none; } .sidebar ul li { padding: 15px 20px; cursor: pointer; transition: 0.3s; } .sidebar ul li:hover { background: #1f4068; } .sidebar ul li.active { background: #e43f5a; } .main-content { margin-left: 260px; padding: 20px; color: #333; } .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; } .header h1 { display: none; } .header button { padding: 8px 15px; background: #e43f5a; border: none; color: #fff; border-radius: 5px; cursor: pointer; transition: 0.3s; } .header button:hover { background: #ff7597; } .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; } .card { background: #0f3460; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; transition: 0.3s; } .card:hover { transform: translateY(-5px); } .card h3 { color: #e43f5a; margin-bottom: 10px; font-size: 14px; } .card p { color: #fff; font-size: 24px; } table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 30px; } table th, table td { color: #333; padding: 12px 15px; text-align: left; font-size: 12px; } table th { background: #e43f5a; color: #fff; } table tr:nth-child(even) { background: #f2f2f2; } table td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; } .footer { margin-top: 20px; text-align: center; color: #aaa; font-size: 8px; } a { color: white; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <img src="https://i.imgur.com/gEu3dAS.png" alt="SafeSurf Logo" />
+      <ul>
+        <li class="active"><a href="/">Dashboard</a></li>
+        <li><a href="safesurf.html">Parental Controls</a></li>
+        <li><a href="history.html">Browsing History</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <div class="header">
+        <h1>Dashboard</h1>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Active Tabs</h3><p>{{ tab_count }}</p></div>
+        <div class="card"><h3>Sites Blocked</h3><p>{{ blocked_count }}</p></div>
+        <div class="card"><h3>AI Alerts</h3><p>{{ alert_count }}</p></div>
+      </div>
+      <h2>Recent Browsing Activity</h2>
+      <table>
+        <thead>
+          <tr><th>Title</th><th>URL</th><th>Time</th></tr>
+        </thead>
+        <tbody>
+          {% for item in recent_history %}
+          <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.url }}</td>
+            <td>{{ item.timestamp }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="3" style="text-align:center;">No browsing history yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="footer">&copy; 2025 SafeSurf | AI-Powered Safety Browser</div>
+    </div>
+  </body>
+</html>
